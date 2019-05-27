@@ -1,14 +1,11 @@
 package exchangetask;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Exchange implements ExchangeInterface, QueryInterface {
-    private TreeSet<Order> sellOrders = new TreeSet<>(Comparator.comparing(Order::getPrice, Comparator.<Integer>naturalOrder()).thenComparing(Order::getRef));
+    private SortedSet<Order> sellOrders = new TreeSet<>(Comparator.comparing(Order::getPrice, Comparator.<Integer>naturalOrder()).thenComparing(Order::getRef));
 
-    private TreeSet<Order> buyOrders = new TreeSet<>(Comparator.comparing(Order::getPrice, Comparator.<Integer>naturalOrder().reversed()).thenComparing(Order::getRef));
+    private SortedSet<Order> buyOrders = new TreeSet<>(Comparator.comparing(Order::getPrice, Comparator.<Integer>naturalOrder().reversed()).thenComparing(Order::getRef));
 
     private Map<Order, Order> orders = new HashMap<>();
 
